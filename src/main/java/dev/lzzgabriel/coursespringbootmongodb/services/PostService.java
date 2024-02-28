@@ -1,5 +1,6 @@
 package dev.lzzgabriel.coursespringbootmongodb.services;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,10 @@ public class PostService {
   
   public List<Post> findByTitle(String text) {
     return repository.searchTitle(text);
+  }
+  
+  public List<Post> fullSearch(String text, Instant minMoment, Instant maxMoment) {
+    return repository.fullSearch(text, minMoment, maxMoment);
   }
 
 }

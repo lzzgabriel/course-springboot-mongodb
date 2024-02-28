@@ -1,5 +1,6 @@
 package dev.lzzgabriel.coursespringbootmongodb.resources;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,16 @@ public class PostResource {
   public ResponseEntity<List<Post>> findByTitle(@RequestParam String text) {
     text = URL.decodeParam(text);
     var objs = service.findByTitle(text);
+    return ResponseEntity.ok(objs);
+  }
+  
+  @GetMapping(value = "/fullsearch")
+  public ResponseEntity<List<Post>> fullSearch(@RequestParam String text, @RequestParam(required = false) String minMoment, @RequestParam(required = false) String maxMoment) {
+    text = URL.decodeParam(text);
+    var now = Instant.now();
+    var min = URL.convertInstant(minMoment, now);
+    var max = URL.convertInstant(maxMoment, now);
+    var objs = service.fullSearch(text, min, max);
     return ResponseEntity.ok(objs);
   }
 
