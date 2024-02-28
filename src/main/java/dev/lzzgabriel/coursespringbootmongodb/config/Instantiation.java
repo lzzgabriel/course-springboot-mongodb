@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 import dev.lzzgabriel.coursespringbootmongodb.domain.Post;
 import dev.lzzgabriel.coursespringbootmongodb.domain.User;
+import dev.lzzgabriel.coursespringbootmongodb.dto.AuthorDTO;
 import dev.lzzgabriel.coursespringbootmongodb.repository.PostRepository;
 import dev.lzzgabriel.coursespringbootmongodb.repository.UserRepository;
 
@@ -33,10 +34,11 @@ public class Instantiation implements CommandLineRunner {
     User alex = new User(null, "Alex Green", "alex@gmail.com");
     User bob = new User(null, "Bob Grey", "bob@gmail.com");
     
-    Post post1 = new Post(null, LocalDateTime.from(DateTimeFormatter.ISO_LOCAL_DATE_TIME.parse("2023-03-21T12:01:05")).toInstant(ZoneOffset.UTC), "Partiu viagem", "Vou viajar para São Paulo, abs!", maria);
-    Post post2 = new Post(null, LocalDateTime.from(DateTimeFormatter.ISO_LOCAL_DATE_TIME.parse("2023-03-23T08:32:12")).toInstant(ZoneOffset.UTC), "Bom dia!", "Acordei feliz hoje", maria);
-    
     userRepository.saveAll(List.of(maria, alex, bob));
+    
+    Post post1 = new Post(null, LocalDateTime.from(DateTimeFormatter.ISO_LOCAL_DATE_TIME.parse("2023-03-21T12:01:05")).toInstant(ZoneOffset.UTC), "Partiu viagem", "Vou viajar para São Paulo, abs!", new AuthorDTO(maria));
+    Post post2 = new Post(null, LocalDateTime.from(DateTimeFormatter.ISO_LOCAL_DATE_TIME.parse("2023-03-23T08:32:12")).toInstant(ZoneOffset.UTC), "Bom dia!", "Acordei feliz hoje", new AuthorDTO(maria));
+    
     postRepository.saveAll(List.of(post1, post2));
   }
 
