@@ -19,6 +19,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import dev.lzzgabriel.coursespringbootmongodb.dto.UserDTO;
 import dev.lzzgabriel.coursespringbootmongodb.services.UserService;
 
+/**
+ * Controlador de Rest: é aqui que se mapeia as rotas RESTful
+ */
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {

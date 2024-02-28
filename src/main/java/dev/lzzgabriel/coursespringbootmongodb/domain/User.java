@@ -9,15 +9,26 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * A anotação @Document indica que a classe representa um domínio a ser
+ * persistido no MongoDB. É tipo a @Entity do JPA.
+ */
 @Document(collection = "user")
 public class User implements Serializable {
   private static final long serialVersionUID = 1L;
-  
+
+  /**
+   * Tanto no MongoDB quanto no JPA, a @Id representa o campo de identificação da
+   * tabela/coleção
+   */
   @Id
   private String id;
   private String name;
   private String email;
 
+  /**
+   * @DBRef indica que esse campo referencia outra coleção no MongoDB
+   */
   @DBRef(lazy = true)
   private List<Post> posts = new ArrayList<>();
 
