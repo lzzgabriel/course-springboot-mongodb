@@ -40,6 +40,9 @@ public class Instantiation implements CommandLineRunner {
     Post post2 = new Post(null, LocalDateTime.from(DateTimeFormatter.ISO_LOCAL_DATE_TIME.parse("2023-03-23T08:32:12")).toInstant(ZoneOffset.UTC), "Bom dia!", "Acordei feliz hoje", new AuthorDTO(maria));
     
     postRepository.saveAll(List.of(post1, post2));
+    
+    maria.getPosts().addAll(List.of(post1, post2));
+    userRepository.save(maria);
   }
 
 }
